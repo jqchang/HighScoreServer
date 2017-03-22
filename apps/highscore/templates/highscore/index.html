@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>High Scores</title>
+  </head>
+  <body>
+    {%if messages%}
+    <ul>
+      {%for msg in messages%}
+      <li>{{msg}}</li>
+      {%endfor%}
+    </ul>
+    {%endif%}
+    <table>
+      <thead>
+        <th>Name</th>
+        <th>Score</th>
+      </thead>
+      <tbody>
+        {%for score in scores%}
+        <tr>
+          <td>{{score.initials}}</td>
+          <td>{{score.score}}
+        </tr>
+        {%endfor%}
+      </tbody>
+    </table>
+    <form action='/submit' method='post'>
+      <table>
+        {%csrf_token%}
+        <tbody>
+          <tr>
+            <td><label for="initials">Name</label></td>
+            <td><input type='text' name='initials'></td>
+          </tr>
+          <tr>
+            <td><label for="score">Score</label></td>
+            <td><input type='number' name='score'></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td><input type='submit'></td>
+          </tr>
+        </tbody>
+      </table>
+    </form>
+  </body>
+</html>
